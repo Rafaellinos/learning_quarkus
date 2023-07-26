@@ -48,3 +48,16 @@
 
 - mvnw compile quarkus:dev // roda em modo dev
 - mvnw install quarkus:dev
+
+## JsonB vs Jackson
+
+- Ambas servem para parsear json em java.
+- jsonB = jakarta EE, novo desde java EE 8 
+  - quarkus utiliza por padrao
+  - quarkus-resteasy-jsonb
+- jackson = mais antiga, flexivel
+  - quarkus-resteasy-jackson
+
+> Não esqueça dos getters e setters, pois eles permitem reflection e parse do json.
+
+> Caso esteja usando quarkus com native-build, use a anotação RegisterForReflection
