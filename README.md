@@ -9,6 +9,16 @@
 - imperativo e reativo (eventos)
 - extenções (possibilidade de usar injection do spring, por exemplo)
 - criar imagem nativa com build tools
+- Quarkus é melhor para containers pois:
+  - java até build 1.21
+    - A JVM n olha para a memoria do Cgroup (onde está o container)
+    - A JVM antigamente só via a memoria do host
+  - java 11 é a minima pra containers
+  - java 11 ainda n era o ideal para containers
+- Quarkus n é rapido só por conta do graalVM
+  - Quarkus no package/build otimiza processa que seriam executados em runtime para build
+  - n precisa mais carregar dependencias pois só é usada no build/start (menor)
+- Dependencias são chamadas de extensions no quarkus
 
 ## GraalVM
 
@@ -61,3 +71,14 @@
 > Não esqueça dos getters e setters, pois eles permitem reflection e parse do json.
 
 > Caso esteja usando quarkus com native-build, use a anotação RegisterForReflection
+
+
+# Configurações
+
+
+### Configurar rest client
+```yaml
+#quarkus.rest-client."<full qualified name com.example...>".url=http://localhost:8080/bitcoins
+quarkus.rest-client.<@RegisterRestClient(configKey = "SOME-NAME")>.url=http://localhost:8080/bitcoins
+quarkus.rest-client.<@RegisterRestClient(configKey = "SOME-NAME")>.verify-host=false
+```
