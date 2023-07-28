@@ -75,6 +75,19 @@
 
 # Configurações
 
+### Diferença entre reactive e non-reactive libs no quarkus:
+
+- não misturar as duas nas dependencias (reactive e imperative), pois, uma é bloqueante e outra não
+- Non-Reactive (imperative)
+  - RESTEasy classic
+  - blocking model, block IO e não libera a thread
+  - mais fácil de programar, mas pode ser pior, principalmente lidando com IO-bound tasks
+  - libera as threads
+- Reactive
+  - RESTEasy reactive
+  - Operações non-blocking
+  - mais concorrencia e menos uso de recursos (threads)
+  - pode ser mais complexo para programar, repensar forma de programar
 
 ### Configurar rest client
 ```yaml
@@ -82,3 +95,9 @@
 quarkus.rest-client.<@RegisterRestClient(configKey = "SOME-NAME")>.url=http://localhost:8080/bitcoins
 quarkus.rest-client.<@RegisterRestClient(configKey = "SOME-NAME")>.verify-host=false
 ```
+
+# Informações
+
+- JBoss is a division of Red Hat
+  - Provides support for the WildFly open source application server
+  - And Related middleware services
